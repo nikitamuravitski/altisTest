@@ -5,7 +5,7 @@ const useStyles = makeStyles({
   wrapper: {
     display: 'flex',
     flexDirection: 'column',
-    zIndex: 9999,
+    zIndex: 2,
     width: '35%',
     marginLeft: '60px'
   },
@@ -22,7 +22,7 @@ const Content = () => {
 
   return <Box className={wrapper}>
     <Box className={text}>
-      <Typography variant='main'>
+      <Typography variant='h1'>
         The only home gym with a built-in personal trainer.
       </Typography>
     </Box>

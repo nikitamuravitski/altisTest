@@ -1,7 +1,6 @@
 import { Button } from '@mui/material'
 
-
-const BuyButton = () => {
+const BlackButton = () => {
   return <Button
     variant='round'
     color='black'
@@ -11,4 +10,4 @@ const BuyButton = () => {
   />
 }
 
-export default BuyButton
+export default BlackButton

@@ -1,16 +1,18 @@
 import { AppBar, Toolbar, Button, Box } from '@mui/material'
-import BuyButton from './BuyButton'
+import BuyButton from '../components/BlackButton'
 import { makeStyles } from '@mui/styles'
 
 
 const pages = ['Tempo Studio', 'Tempo Move', 'How It Works', 'Workouts', 'Locations', 'Reviews']
 const useStyles = makeStyles(theme => ({
   container: {
+
     padding: '6px 20px',
     margin: 0,
     backgroundColor: `${theme.palette.white.main} !important`,
   },
   header: {
+    zIndex: 9999,
     minHeight: 0,
     justifyContent: 'space-between',
     backgroundColor: theme.palette.white.main,
@@ -42,7 +44,7 @@ const useStyles = makeStyles(theme => ({
 const Header = () => {
   const { header, container, right, icon, left, logo } = useStyles()
   return <header>
-    <AppBar className={container} >
+    <AppBar className={container} elevation='none'>
       <Toolbar className={header}>
         <Box className={left}>
           <Box className={icon}>

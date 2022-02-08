@@ -20,8 +20,47 @@ const theme = createTheme({
           props: { variant: 'main' },
           style: {
             textTransform: 'none',
-            fontSize: '60px',
             fontFamily: 'Helvetica Neue',
+
+          }
+        },
+        {
+          props: { variant: 'h1' },
+          style: {
+            textTransform: 'none',
+            fontSize: 60,
+            fontFamily: 'Helvetica Neue',
+            lineHeight: 1.1
+          }
+        },
+        {
+          props: { variant: 'h1', color: 'black' },
+          style: {
+            color: '#000',
+
+          }
+        },
+        {
+          props: { variant: 'filled' },
+          style: {
+            zIndex: 10,
+            display: 'flex',
+            width: 'fit-content',
+            justifyContent: 'center',
+            fontFamily: 'Helvetica Neue',
+            backgroundColor: '#000',
+            color: '#fff',
+            fontSize: 12,
+            padding: '0 10px',
+            borderRadius: 11
+          }
+        },
+        {
+          props: { variant: 'h1', size: 'small', thick: 'true' },
+          style: {
+            zIndex: 10,
+            fontSize: 16,
+            fontWeight: 500
           }
         }
       ]
@@ -50,7 +89,7 @@ const theme = createTheme({
           style: {
             textTransform: 'none',
             fontFamily: 'Helvetica Neue',
-            // maxWidth: 200,
+            width: 'fit-content',
             fontWeight: 500,
             fontSize: '14px',
             height: '41px',
@@ -66,8 +105,6 @@ const theme = createTheme({
           props: { variant: 'round', color: 'white' },
           style: (props) => {
             const color = props.ownerState.color
-            console.log(props.theme.palette[color].main)
-            console.log(props)
             return {
               color: props.theme.palette[color].contrastText,
               backgroundColor: props.theme.palette[color].main,
@@ -81,13 +118,12 @@ const theme = createTheme({
           props: { variant: 'round', color: 'black' },
           style: (props) => {
             const color = props.ownerState.color
-            console.log(props.theme.palette[color].main)
-            console.log(props)
             return {
               color: props.theme.palette[color].contrastText,
               backgroundColor: props.theme.palette[color].main,
               '&:hover': {
-                backgroundColor: props.theme.palette[color].main,
+                color: props.theme.palette.black.main,
+                backgroundColor: props.theme.palette.white.main,
               }
             }
           }
