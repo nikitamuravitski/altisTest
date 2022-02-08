@@ -13,7 +13,27 @@ const palette = {
 }
 
 const theme = createTheme({
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 800,
+      lg: 1024,
+      xl: 1200
+    }
+  },
+
   components: {
+    MuiToolbar: {
+      styleOverrides: {
+        root: ({ theme }) => ({
+          padding: 0,
+          [theme.breakpoints.up('sm')]: {
+            padding: 0,
+          }
+        })
+      }
+    },
     MuiTypography: {
       variants: [
         {
@@ -21,23 +41,34 @@ const theme = createTheme({
           style: {
             textTransform: 'none',
             fontFamily: 'Helvetica Neue',
-
+            lineHeight: 1.3
           }
         },
         {
           props: { variant: 'h1' },
-          style: {
+          style: ({ theme }) => ({
             textTransform: 'none',
+            [theme.breakpoints.down('md')]: {
+              fontSize: 32,
+              letterSpacing: 2
+            },
             fontSize: 60,
             fontFamily: 'Helvetica Neue',
             lineHeight: 1.1
-          }
+          })
+        },
+        {
+          props: { variant: 'h1', narrow: 'true' },
+          style: ({ theme }) => ({
+            [theme.breakpoints.down('md')]: {
+              letterSpacing: 0
+            }
+          })
         },
         {
           props: { variant: 'h1', color: 'black' },
           style: {
             color: '#000',
-
           }
         },
         {
@@ -65,24 +96,33 @@ const theme = createTheme({
         }
       ]
     },
+
     MuiButton: {
       variants: [
         {
           props: { variant: 'plain' },
-          style: {
+          style: ({ theme }) => ({
+            [theme.breakpoints.up('lg')]: {
+              margin: '0 17px',
+              fontSize: '16px',
+            },
+            [theme.breakpoints.down('lg')]: {
+              margin: '0 7px',
+              fontSize: '15px',
+            },
             textTransform: 'none',
-            fontSize: '16px',
+
             fontFamily: 'Helvetica Neue',
             fontWeight: 500,
             borderRadius: 0,
             padding: 0,
-            margin: '0 17px',
+
             color: palette.black.main,
             '&:hover': {
               boxShadow: 'inset 0 -1px 0 0 black',
               backgroundColor: palette.white.main
             }
-          }
+          })
         },
         {
           props: { variant: 'round' },

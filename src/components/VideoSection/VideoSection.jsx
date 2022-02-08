@@ -3,8 +3,11 @@ import { makeStyles } from '@mui/styles'
 import Content from './Content'
 import './videoSection.css'
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   wrapper: {
+    [theme.breakpoints.down('md')]: {
+      paddingBottom: '100px'
+    },
     position: 'relative',
     display: 'flex',
     alignItems: 'flex-end',
@@ -12,7 +15,7 @@ const useStyles = makeStyles({
     height: '100vh',
     paddingBottom: '50px'
   }
-})
+}))
 
 const VideoSection = () => {
   const { wrapper } = useStyles()

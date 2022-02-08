@@ -17,9 +17,11 @@
   z-index: 9;
 }
 
+
+
 .swiper {
   height: 920px;
-  overflow: hidden;
+  margin: 0 40px;
 }
 
 .swiper::after {

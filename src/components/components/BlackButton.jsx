@@ -1,10 +1,10 @@
 import { Button } from '@mui/material'
 
-const BlackButton = () => {
+const BlackButton = ({ title }) => {
   return <Button
     variant='round'
     color='black'
-    children='Buy Tempo'
+    children={title}
     disableRipple={true}
     disableElevation={true}
   />
