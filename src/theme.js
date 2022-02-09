@@ -23,15 +23,25 @@ const theme = createTheme({
       xxl: 1600
     }
   },
-
   components: {
+    MuiAppBar: {
+      styleOverrides: {
+        root: ({ theme }) => ({
+          backgroundColor: theme.palette.white.main
+        })
+      }
+    },
     MuiToolbar: {
       styleOverrides: {
         root: ({ theme }) => ({
           padding: 0,
-          [theme.breakpoints.up('sm')]: {
-            padding: 0,
-          }
+          backgroundColor: theme.palette.white.main,
+          [theme.breakpoints.up('lg')]: {
+            padding: '6px 20px',
+          },
+          [theme.breakpoints.down('lg')]: {
+            padding: '6px 5px',
+          },
         })
       }
     },
@@ -97,7 +107,6 @@ const theme = createTheme({
         }
       ]
     },
-
     MuiButton: {
       variants: [
         {

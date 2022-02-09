@@ -25,15 +25,20 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const Content = () => {
-  const { wrapper, text } = useStyles()
+  const classes = useStyles()
 
-  return <Box className={wrapper}>
-    <Box className={text}>
+  return <Box className={classes.wrapper}>
+    <Box className={classes.text}>
       <Typography variant='h1'>
         The only home gym with a built-in personal trainer.
       </Typography>
     </Box>
-    <Button variant='round' color='white' sx={{ maxWidth: 170 }} children='How It Works' />
+    <Button
+      variant='round'
+      color='white'
+      sx={{ maxWidth: 170 }}
+      children='How It Works'
+    />
   </Box>
 }
 export default Content

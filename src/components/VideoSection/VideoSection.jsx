@@ -18,8 +18,8 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const VideoSection = () => {
-  const { wrapper } = useStyles()
-  return <Box className={wrapper}>
+  const classes = useStyles()
+  return <Box className={classes.wrapper}>
     <Content />
     <video
       autoPlay

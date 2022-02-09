@@ -52,27 +52,27 @@ const useStyles = makeStyles(theme => ({
 const CarouselSection = () => {
 
   const theme = useTheme()
+  const classes = useStyles()
   const matchesSmall = useMediaQuery(theme.breakpoints.down('xl'))
 
-  const { wrapper, carouselContainer, content, container, text, carouselItem } = useStyles()
-  return <Box className={wrapper}>
-    <Box className={container}>
-      <Box className={content}>
+  return <Box className={classes.wrapper}>
+    <Box className={classes.container}>
+      <Box className={classes.content}>
         <Typography variant='h1' narrow='true' color='black' sx={{ marginBottom: '20px' }}>
           1,000s of live and on-demand workouts.
         </Typography>
-        <Typography className={text} variant='main' sx={{ marginBottom: '20px' }}>
+        <Typography className={classes.text} variant='main' sx={{ marginBottom: '20px' }}>
           Strength training, HIIT, cardio, boxing, yoga, low-impact, prenatal, agility, and mobility. We've got exactly what you need to meet your goals, and add new classes daily to keep things fresh.
         </Typography>
-        <BlackButton title='Learn More' />
+        <BlackButton title='Learn More' color='black' />
       </Box>
-      <Box className={content}>
-        <Box className={carouselContainer}>
-          <Box className={carouselItem}>
+      <Box className={classes.content}>
+        <Box className={classes.carouselContainer}>
+          <Box className={classes.carouselItem}>
             <Carousel data={!matchesSmall ? firstCarousel : [...firstCarousel, ...secondCarousel]} speed={5000} />
           </Box>
           {!matchesSmall &&
-            <Box className={carouselItem}>
+            <Box className={classes.carouselItem}>
               <Carousel data={secondCarousel} speed={8000} />
             </Box>
           }

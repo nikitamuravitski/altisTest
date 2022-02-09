@@ -1,9 +1,9 @@
 import { Button } from '@mui/material'
 
-const BlackButton = ({ title }) => {
+const BlackButton = ({ title, color }) => {
   return <Button
     variant='round'
-    color='black'
+    color={color}
     children={title}
     disableRipple={true}
     disableElevation={true}

@@ -3,34 +3,22 @@ import BuyButton from '../components/BlackButton'
 import { makeStyles, useTheme } from '@mui/styles'
 import { useEffect, useState } from 'react'
 
-
 const pages = ['Tempo Studio', 'Tempo Move', 'How It Works', 'Workouts', 'Locations', 'Reviews']
 const mediumPages = pages.slice(0, 4)
+
 const useStyles = makeStyles(theme => ({
   container: {
-    [theme.breakpoints.up('lg')]: {
-      padding: '6px 20px ',
-    },
-    [theme.breakpoints.down('lg')]: {
-      padding: '6px 0 !important',
-    },
-    margin: 0,
-    backgroundColor: `${theme.palette.white.main} !important`,
-  },
-  header: {
     [theme.breakpoints.up('lg')]: {
       padding: '6px 20px',
     },
     [theme.breakpoints.down('lg')]: {
-      padding: '6px 0',
+      padding: '1px',
     },
-    [theme.breakpoints.up('sm')]: {
-      // padding: '6px 0 !important',
-    },
-    zIndex: 9999,
+    margin: 0,
+  },
+  header: {
     minHeight: 0,
     justifyContent: 'space-between',
-    backgroundColor: theme.palette.white.main,
     margin: 0,
     padding: 0
   },
@@ -43,7 +31,7 @@ const useStyles = makeStyles(theme => ({
     cursor: 'pointer',
     display: 'flex',
     justifyContent: 'center',
-    paddingLeft: '16px'
+    paddingLeft: '9px'
   },
   logo: {
     display: 'flex',
@@ -58,22 +46,23 @@ const useStyles = makeStyles(theme => ({
 
 const Header = () => {
   const theme = useTheme()
+  const classes = useStyles()
   const [pagesState, setPages] = useState(null)
-  const matchesMedium = useMediaQuery(theme.breakpoints.between('md', 'xl'))
-  const matchesLarge = useMediaQuery(theme.breakpoints.up('xl'))
-  const matchesSmall = useMediaQuery(theme.breakpoints.down('lg'))
+
+  const matchesLarge = useMediaQuery(theme.breakpoints.between('md', 'xl'))
+  const matchesExtraLarge = useMediaQuery(theme.breakpoints.up('xl'))
+  const matchesSmall = useMediaQuery(theme.breakpoints.down('md'))
 
   useEffect(() => {
     matchesSmall && setPages(null)
-    matchesMedium && setPages(mediumPages)
-    matchesLarge && setPages(pages)
-  }, [matchesLarge, matchesMedium, matchesSmall])
+    matchesLarge && setPages(mediumPages)
+    matchesExtraLarge && setPages(pages)
+  }, [matchesExtraLarge, matchesLarge, matchesSmall])
 
-  const { header, container, right, icon, left, logo } = useStyles()
-  return <AppBar className={container} elevation={3}>
-    <Toolbar className={header}>
-      <Box className={left}>
-        <Box className={icon}>
+  return <AppBar className={classes.container} elevation={3}>
+    <Toolbar className={classes.header}>
+      <Box className={classes.left}>
+        <Box className={classes.icon}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="19"
@@ -96,7 +85,7 @@ const Header = () => {
             </g>
           </svg>
         </Box>
-        <Box className={logo}>
+        <Box className={classes.logo}>
           <svg
             width="111px"
             height="25px"
@@ -127,9 +116,29 @@ const Header = () => {
           />
         })}
       </Box>
-      <Box className={right}>
-        <BuyButton title='Buy Tempo' />
-        <Box className={icon}>
+      <Box className={classes.right}>
+        <BuyButton title='Buy Tempo' color='black' />
+        {matchesSmall && <Box className={classes.icon}>
+          <svg
+            width="22"
+            height="18"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g
+              fill="#000"
+              fill-rule="nonzero"
+              stroke="#000"
+              stroke-width=".25"
+            >
+              <path
+                d="M10.72 0a6.757 6.757 0 0 0-6.75 6.75c0 4.679 6.094 10.826 6.352 11.086a.565.565 0 0 0 .797 0c.259-.26 6.352-6.407 6.352-11.086A6.757 6.757 0 0 0 10.72 0zm0 16.624c-1.343-1.438-5.624-6.3-5.624-9.874a5.631 5.631 0 0 1 5.625-5.625 5.631 5.631 0 0 1 5.625 5.625c0 3.57-4.282 8.436-5.625 9.874z"></path><path d="M10.72 3.375A3.38 3.38 0 0 0 7.347 6.75a3.38 3.38 0 0 0 3.375 3.375 3.38 3.38 0 0 0 3.375-3.375 3.38 3.38 0 0 0-3.375-3.375zm0 5.625C9.48 9 8.47 7.99 8.47 6.75S9.48 4.5 10.72 4.5c1.241 0 2.25 1.01 2.25 2.25S11.962 9 10.72 9z"
+                >
+              </path>
+            </g>
+          </svg>
+        </Box>
+        }
+        <Box className={classes.icon}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="20"
@@ -154,7 +163,7 @@ const Header = () => {
         </Box>
       </Box>
     </Toolbar>
-  </AppBar>
+  </AppBar >
 }
 
 export default Header
