@@ -1,6 +1,6 @@
-import { Box, Typography } from '@mui/material'
+import { Box, Typography, useMediaQuery } from '@mui/material'
 import { firstCarousel, secondCarousel } from './data'
-import { makeStyles } from '@mui/styles'
+import { makeStyles, useTheme } from '@mui/styles'
 import Carousel from '../Carousel'
 import BlackButton from '../components/BlackButton'
 
@@ -9,40 +9,31 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     justifyContent: 'center',
     width: '100%',
+    marginTop: 30,
     height: '100vh'
   },
   container: {
     [theme.breakpoints.down('md')]: {
       flexDirection: 'column',
-      height: 'fit-content',
+      justifyContent: 'flex-start',
       padding: '0 18px',
       width: '100%'
     },
     display: 'flex',
-    width: '1520px',
+    justifyContent: 'space-around',
     padding: '0 40px'
   },
   carouselContainer: {
     display: 'flex',
     justifyContent: 'center',
-    marginLeft: 54,
-    width: 'fit-content',
-    minWidth: 400,
-    [theme.breakpoints.down('md')]: {
-      marginLeft: 0,
-      // width: '100%',
-    },
   },
-  carousel: {
-    display: 'flex',
-
+  carouselItem: {
+    paddingLeft: '20px',
+    width: 'fit-content'
   },
   content: {
-    [theme.breakpoints.down('md')]: {
-      width: '100%',
-    },
-    [theme.breakpoints.between('md', 'lg')]: {
-      width: '60%',
+    [theme.breakpoints.down('xl')]: {
+      width: '100%'
     },
     width: '50%',
     display: 'flex',
@@ -52,15 +43,18 @@ const useStyles = makeStyles(theme => ({
   },
   text: {
     [theme.breakpoints.down('md')]: {
-      width: '60%',
+      width: '80%',
       padding: '20px 0 16px 0'
     },
     width: '55%'
   }
 }))
-
 const CarouselSection = () => {
-  const { wrapper, carouselContainer, content, container, text, carousel } = useStyles()
+
+  const theme = useTheme()
+  const matchesSmall = useMediaQuery(theme.breakpoints.down('xl'))
+
+  const { wrapper, carouselContainer, content, container, text, carouselItem } = useStyles()
   return <Box className={wrapper}>
     <Box className={container}>
       <Box className={content}>
@@ -72,12 +66,17 @@ const CarouselSection = () => {
         </Typography>
         <BlackButton title='Learn More' />
       </Box>
-      <Box className={carouselContainer}>
-
-        <Carousel data={firstCarousel} speed={5000} />
-        <Carousel data={secondCarousel} speed={8000} />
-
-
+      <Box className={content}>
+        <Box className={carouselContainer}>
+          <Box className={carouselItem}>
+            <Carousel data={!matchesSmall ? firstCarousel : [...firstCarousel, ...secondCarousel]} speed={5000} />
+          </Box>
+          {!matchesSmall &&
+            <Box className={carouselItem}>
+              <Carousel data={secondCarousel} speed={8000} />
+            </Box>
+          }
+        </Box>
       </Box>
     </Box>
   </Box>
